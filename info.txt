@@ -1,0 +1,50 @@
+connexion a la base de donnée:
+ij
+connect 'jdbc:derby:bd/testdbi';
+
+Création de table:
+create table reporter(id integer primary key generated always as identity, pseudo varchar(30), credit integer);
+create table news(id integer primary key generated always as identity, titre varchar(30), contenu varchar(250), datepost date);
+create table tags(id integer primary key generated always as identity, tag varchar(30));
+create table news_tags (id integer primary key generated always as identity, id_tags integer, id_news integer);
+
+Insertion en bdd:
+insert into news (titre,contenu,datepost,id_tags,id_reporter) values ('Titre1','Contenu1','2018-02-02',1,1);
+
+
+
+
+Création clé étrangère:
+alter table news add foreign key (id_reporter) references reporter(id);
+alter table news_tags add foreign key (id_tags) references tags(id);
+alter table news_tags add foreign key (id_news) references news(id);
+
+Supprimer clé étrangère:
+alter table news_tags drop foreign key id_tags;
+alter table news_tags drop foreign key id_news;
+
+Modification d'un champ
+
+
+DESCRIBE { table-Name | view-Name }
+select * from news;
+DROP TABLE nom_table;
+insert into reporter (pseudo,credit) values ('Titi',3);
+
+Requête préparée:
+PreparedStatement state = connectionDatabase.getConnection().prepareStatement("SELECT * FROM reporter WHERE id = ?");
+        state.setInt(1, 1);
+
+ALTER TABLE Commande
+ADD CONSTRAINT fk_client_numero FOREIGN KEY (client) REFERENCES Client(numero);
+
+
+
+1.Lire reporter par son id
+2 Lire une news par rapport à un paramètre (id de la news)
+    2.1 Lire uniquement dans la table news
+    2.2 Puis, recupere le nom journaliste (a partir de la clé etrangère dans news)
+    2.3 En récupérant liste tags
+3 Ecriture news
+    3.1 Gérer l'id du reporter
+    3.2 Gérer la liste des tags
