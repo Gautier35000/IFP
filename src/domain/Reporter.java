@@ -3,13 +3,7 @@ package domain;
 public class Reporter {
 
    public int credit;
-   public String pseudo;
-   public int id;
-
-
-
-
-
-
+   public String name;
+   public int id_reporter;
 
 }

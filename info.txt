@@ -10,7 +10,7 @@ create table news_tags (id integer primary key generated always as identity, id_
 
 Insertion en bdd:
 insert into news (titre,contenu,datepost,id_tags,id_reporter) values ('Titre1','Contenu1','2018-02-02',1,1);
-
+SELECT * FROM `newstag` INNER JOIN tag ON newstag.id_tag = tag.id_tag WHERE id_news=1
 
 
 

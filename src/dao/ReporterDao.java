@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class ReporterDao {
 
     public void getAllReporter(int id) throws SQLException {
-        System.out.println(id);
         ConnectionDatabase connectionDatabase = new ConnectionDatabase();
         PreparedStatement state = connectionDatabase.getConnection().prepareStatement("SELECT * FROM reporter WHERE id_reporter = ?");
         state.setInt(1,id);
@@ -16,9 +15,9 @@ public class ReporterDao {
         while (result.next()) {
             System.out.println("Le reporter " + (result.getString(2) + " a pour id " + result.getInt(1) + " et pour crédit " + result.getInt(3)));
         }
-
         result.close();
         state.close();
     }
+
 
 }
