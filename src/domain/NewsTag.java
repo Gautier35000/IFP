@@ -1,8 +1,16 @@
 package domain;
 
 public class NewsTag {
-    private int id_newsTag;
-    private int id_news;
-    private int id_tag;
+    private int id_ag;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    private String tag;
 
 }

@@ -1,7 +1,9 @@
 import dao.NewsDao;
 import dao.NewsTagDao;
 import dao.ReporterDao;
+import domain.News;
 import domain.NewsTag;
+import domain.Reporter;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,45 +40,54 @@ public class Main {
             case "1":
                 System.out.print("Quel est l'ID du reporter souhaité?");
                 int selectIdReporter = sc.nextInt();
+                Reporter idReporter = new Reporter();
+                idReporter.setId_reporter(selectIdReporter);
                 ReporterDao reporteDao = new ReporterDao();
                 try {
-                    reporteDao.getAllReporter(selectIdReporter);
+                    reporteDao.getAllReporter(idReporter);
                 } catch (SQLException e) {
                     e.printStackTrace();
                     System.exit(-1);
                 }
                 break;
+
             case "2":
                 System.out.print("Quel est l'ID de la news souhaité?");
                 int selectIdNews = sc.nextInt();
+                News idNews = new News();
+                idNews.setId_news(selectIdNews);
                 NewsDao newsDao = new NewsDao();
-                NewsTagDao newsTagsDao = new NewsTagDao();
                 try {
-                    newsDao.getAllNews(selectIdNews);
-                    newsTagsDao.getAllTag(selectIdNews);
+                    newsDao.getAllNewsAndTags(idNews);
+
                 } catch (SQLException e) {
                     e.printStackTrace();
                     System.exit(-1);
                 }
                 break;
 
+
             case "3":
                 NewsDao newsDaoCreate = new NewsDao();
-
+                News newsCreate = new News();
                 System.out.print("Quel est le titre de la news?");
                 String title = sc.nextLine();
                 System.out.print("Quel est le contenu de la news?");
                 String contain = sc.nextLine();
                 System.out.print("Quel est l'id du reporter?");
                 int id_reporter = sc.nextInt();
-
+                newsCreate.setTitle(title);
+                newsCreate.setContain(contain);
+                newsCreate.setId_reporter(id_reporter);
                 try {
-                    newsDaoCreate.createNews(title, contain, id_reporter);
+                    newsDaoCreate.createNews(newsCreate);
                 } catch (SQLException e) {
                     e.printStackTrace();
                     System.exit(-1);
                 }
                 break;
+
+
             case "4":
                 System.out.print("Fin du programme");
                 break;
