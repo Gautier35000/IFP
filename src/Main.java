@@ -1,3 +1,4 @@
+import Exceptions.NoDataDBException;
 import dao.NewsDao;
 import dao.NewsTagDao;
 import dao.ReporterDao;
@@ -44,7 +45,7 @@ public class Main {
                 idReporter.setId_reporter(selectIdReporter);
                 ReporterDao reporteDao = new ReporterDao();
                 try {
-                    reporteDao.getAllReporter(idReporter);
+                    reporteDao.readReporter(idReporter);
                 } catch (SQLException e) {
                     e.printStackTrace();
                     System.exit(-1);
@@ -58,9 +59,9 @@ public class Main {
                 idNews.setId_news(selectIdNews);
                 NewsDao newsDao = new NewsDao();
                 try {
-                    newsDao.getAllNewsAndTags(idNews);
+                    newsDao.readNewsAndTags(idNews);
 
-                } catch (SQLException e) {
+                } catch (SQLException | NoDataDBException e) {
                     e.printStackTrace();
                     System.exit(-1);
                 }

@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class NewsTagDao {
-    public void getAllTag(News newsId) throws SQLException {
+    public void readAllTag(News newsId) throws SQLException {
         ConnectionDatabase connectionDatabase = new ConnectionDatabase();
-        PreparedStatement state = connectionDatabase.getConnection().prepareStatement("SELECT * FROM `newstag` INNER JOIN tag ON newstag.id_tag = tag.id_tag WHERE id_news=?");
+        PreparedStatement state = connectionDatabase.BddConnection().prepareStatement("SELECT * FROM `newstag` INNER JOIN tag ON newstag.id_tag = tag.id_tag WHERE id_news=?");
         state.setInt(1, newsId.getId_news());
         ResultSet result = state.executeQuery();
         System.out.println("3/ Les tags sont: ");
@@ -25,7 +25,7 @@ public class NewsTagDao {
     public void createTags(NewsTag newsTag,String title) throws SQLException {
 
         ConnectionDatabase connectionDatabase = new ConnectionDatabase();
-        PreparedStatement state = connectionDatabase.getConnection().prepareStatement("INSERT INTO `tag` (tag) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement state = connectionDatabase.BddConnection().prepareStatement("INSERT INTO `tag` (tag) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
 
         state.setString(1, newsTag.getTag());
         state.executeUpdate();

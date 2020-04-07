@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 public class ReporterDao {
 
-    public void getAllReporter(Reporter idReporter) throws SQLException {
+    public void readReporter(Reporter idReporter) throws SQLException {
         ConnectionDatabase connectionDatabase = new ConnectionDatabase();
-        PreparedStatement state = connectionDatabase.getConnection().prepareStatement("SELECT * FROM reporter WHERE id_reporter = ?");
+        PreparedStatement state = connectionDatabase.BddConnection().prepareStatement("SELECT * FROM reporter WHERE id_reporter = ?");
         state.setInt(1, idReporter.getId_reporter());
         ResultSet result = state.executeQuery();
         while (result.next()) {

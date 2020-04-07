@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class ConnectionDatabase {
-    public Connection getConnection() throws SQLException {
+    public Connection BddConnection() throws SQLException {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
